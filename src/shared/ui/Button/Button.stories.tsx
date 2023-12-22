@@ -47,3 +47,41 @@ OutlineDark.args = {
     theme: ButtonTheme.OUTLINE,
 };
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Background = Template.bind({});
+Background.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND,
+};
+export const BackgroundDark = Template.bind({});
+BackgroundDark.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
+};
+BackgroundDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const BackgroundInverted = Template.bind({});
+BackgroundInverted.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+};
+export const BackgroundInvertedDark = Template.bind({});
+BackgroundInvertedDark.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+};
+BackgroundInvertedDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Square = Template.bind({});
+Square.args = {
+    children: 'Text',
+    square: true,
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+};
+export const SquareDark = Template.bind({});
+SquareDark.args = {
+    children: 'Text',
+    square: true,
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+};
+SquareDark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonSize } from 'shared/ui/Button/Button';
 import cls from './PageError.module.scss';
 
 interface PageErrorProps {
@@ -21,6 +21,7 @@ export const PageError = ({ className }: PageErrorProps) => {
             <Button
                 onClick={reloadPage}
                 className={classNames(cls.button)}
+                size={ButtonSize.L}
             >
                 {t('Обновить страницу')}
             </Button>

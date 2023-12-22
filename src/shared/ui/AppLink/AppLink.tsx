@@ -4,7 +4,7 @@ import cls from './AppLink.module.scss';
 
 export enum AppLinkTheme {
     PRIMARY = 'primary',
-    SECONDARY = 'secondary',
+    INVERTED = 'inverted',
     RED = 'red'
 }
 
