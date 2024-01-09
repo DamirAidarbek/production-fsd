@@ -29,7 +29,6 @@ export const Navbar = (props: NavbarProps) => {
     }, []);
 
     const onLogout = useCallback(() => {
-        setIsAuthModal(false);
         dispatch(userActions.logout());
     }, [dispatch]);
 

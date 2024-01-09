@@ -6,9 +6,11 @@
   "Обновить страницу": "Reload the page",
   "Произошла ошибка": "Something went wrong",
   "Короткий язык": "En",
-  "Войти": "Войти",
-  "Введите username": "Введите username",
-  "Введите password": "Введите password",
-  "Выйти": "Выйти",
-  "Форма авторизации": "Форма авторизации"
+  "Войти": "Login",
+  "Введите username": "Enter username",
+  "Введите password": "Enter password",
+  "Выйти": "Logout",
+  "Форма авторизации": "Authorization",
+  "Профиль": "Profile",
+  "Страница профиля": "Profile page"
 }

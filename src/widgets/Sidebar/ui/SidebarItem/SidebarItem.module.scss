@@ -1,0 +1,29 @@
+.SidebarItem {
+    color: var(--inverted-primary-color);
+    display: flex;
+    align-items: center;
+    font: var(--font-m);
+    margin-top: 10px;
+}
+
+.text {
+    white-space: nowrap;
+    opacity: 1;
+    transition: 0.2s all;
+    margin-left: 10px;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
+    font: var(--font-xl);
+}
+
+.collapsed {
+    width: var(--sidebar-collapsed-width);
+
+    .text {
+        transition: 0.2s all;
+        opacity: 0;
+        width: 0;
+    }
+}
