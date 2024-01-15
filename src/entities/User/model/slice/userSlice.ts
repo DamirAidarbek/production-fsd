@@ -4,6 +4,7 @@ import { User, UserSchema } from '../types/userSchema';
 
 const initialState: UserSchema = {
     authData: undefined,
+    _inited: false,
 };
 
 const userSlice = createSlice({
@@ -12,6 +13,13 @@ const userSlice = createSlice({
     reducers: {
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
+        },
+        initAuthData: (state) => {
+            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+            if (user) {
+                state.authData = JSON.parse(user);
+            }
+            state._inited = true;
         },
         logout: (state) => {
             state.authData = undefined;

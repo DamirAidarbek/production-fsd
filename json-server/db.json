@@ -25,5 +25,15 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Damir",
+    "lastname": "Aidarbek",
+    "age": 45,
+    "currency": "KZT",
+    "country": "KAZAKHSTAN",
+    "city": "Almaty",
+    "username": "admin",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShmcMMIdXCurWkLY8UTJRpARmbbe9Hzg8L1A&usqp=CAU",
+    "id": "1"
+  }
 }

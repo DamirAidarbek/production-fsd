@@ -8,6 +8,7 @@ export enum ButtonTheme {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clearInverted',
     OUTLINE = 'outline',
+    OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted'
 }
@@ -30,7 +31,7 @@ export const Button = memo((props: ButtonProps) => {
     const {
         children,
         className,
-        theme,
+        theme = ButtonTheme.OUTLINE,
         square,
         size = ButtonSize.M,
         ...otherProps
