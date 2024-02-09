@@ -23,6 +23,7 @@
     position: absolute;
     bottom: 40px;
     right: -32px;
+    z-index: var(--collapse-btn-z-index);
 }
 
 .items {

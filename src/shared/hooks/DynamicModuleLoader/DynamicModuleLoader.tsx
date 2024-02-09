@@ -15,7 +15,7 @@ interface DynamicModuleLoaderProps {
     children: ReactNode;
 }
 
-export const UseDynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
+export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
     const {
         reducers,
         removeAfterUnmount,

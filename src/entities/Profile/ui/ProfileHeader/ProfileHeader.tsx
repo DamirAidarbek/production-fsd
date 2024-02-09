@@ -5,6 +5,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { getProfileCanEdit } from '../../model/selectors/getProfileCanEdit/getProfileCanEdit';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { profileActions } from '../../model/slice/profileSlice';
 import cls from './ProfileHeader.module.scss';
@@ -13,12 +14,14 @@ import { updateProfileData } from '../../model/services/updateProfileData/update
 interface ProfileHeaderProps {
     className?: string;
     error?: boolean;
+    profileId?: string;
 }
 
-export const ProfileHeader = memo(({ className, error }: ProfileHeaderProps) => {
+export const ProfileHeader = memo(({ className, error, profileId }: ProfileHeaderProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const readonly = useSelector(getProfileReadonly);
+    const canEdit = useSelector(getProfileCanEdit);
 
     const setReadonly = useCallback(() => {
         dispatch(profileActions.setReadonly(false));
@@ -29,41 +32,45 @@ export const ProfileHeader = memo(({ className, error }: ProfileHeaderProps) => 
     }, [dispatch]);
 
     const updateProfileHandler = useCallback(() => {
-        dispatch(updateProfileData());
+        if (profileId) {
+            dispatch(updateProfileData(profileId));
+        }
     }, [dispatch]);
 
     return (
         <div className={classNames(cls.ProfileHeader, {}, [className])}>
             <Text title={t('Профиль')} />
-            <div className={cls.btns}>
-                {readonly || error
-                    ? (
-                        <Button
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={setReadonly}
-                            disabled={error}
-                        >
-                            {t('Редактировать')}
-                        </Button>
-                    )
-                    : (
-                        <>
-                            <Button
-                                theme={ButtonTheme.OUTLINE_RED}
-                                className={cls.cancelBtn}
-                                onClick={onCancelUpdate}
-                            >
-                                {t('Отменить')}
-                            </Button>
+            {canEdit && (
+                <div className={cls.btns}>
+                    {readonly || error
+                        ? (
                             <Button
                                 theme={ButtonTheme.OUTLINE}
-                                onClick={updateProfileHandler}
+                                onClick={setReadonly}
+                                disabled={error}
                             >
-                                {t('Сохранить')}
+                                {t('Редактировать')}
                             </Button>
-                        </>
-                    )}
-            </div>
+                        )
+                        : (
+                            <>
+                                <Button
+                                    theme={ButtonTheme.OUTLINE_RED}
+                                    className={cls.cancelBtn}
+                                    onClick={onCancelUpdate}
+                                >
+                                    {t('Отменить')}
+                                </Button>
+                                <Button
+                                    theme={ButtonTheme.OUTLINE}
+                                    onClick={updateProfileHandler}
+                                >
+                                    {t('Сохранить')}
+                                </Button>
+                            </>
+                        )}
+                </div>
+            )}
         </div>
     );
 });

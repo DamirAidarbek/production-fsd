@@ -8,12 +8,14 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 
 interface InputProps extends HTMLInputProps{
     className?: string;
+    clForInput?: string;
     type?: string;
     value?: string | number,
     onChange?: (e: string) => void
     placeholder?: string;
     autofocus?: boolean;
     readonly?: boolean;
+    inputPlaceholder?: string;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -24,6 +26,8 @@ export const Input = memo((props: InputProps) => {
         onChange,
         placeholder,
         autofocus = false,
+        inputPlaceholder,
+        clForInput,
         readonly,
         ...otherProps
     } = props;
@@ -43,12 +47,13 @@ export const Input = memo((props: InputProps) => {
         <div className={classNames(cls.Input, {}, [className])}>
             { placeholder && <span className={cls.placeholder}>{placeholder}</span> }
             <input
-                className={cls.inputItem}
+                className={classNames(cls.inputItem, {}, [clForInput])}
                 type={type}
                 value={value}
                 onChange={onChangeHandler}
                 ref={inputRef}
                 disabled={readonly}
+                placeholder={inputPlaceholder}
                 {...otherProps}
             />
         </div>

@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ReducersList, UseDynamicModuleLoader } from 'shared/hooks/useDynamicModuleLoader/useDynamicModuleLoader';
+import { ReducersList, DynamicModuleLoader } from 'shared/hooks/DynamicModuleLoader/DynamicModuleLoader';
 import {
     fetchProfileData,
     getProfileError,
@@ -20,6 +20,7 @@ import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { ValidateProfileErrors } from 'entities/Profile/model/types/profile';
+import { useParams } from 'react-router-dom';
 import cls from './ProfilePage.module.scss';
 
 interface ProfilePageProps {
@@ -33,6 +34,7 @@ const reducers: ReducersList = {
 const ProfilePage = ({ className }: ProfilePageProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation('profile');
+    const { id } = useParams<{ id: string }>();
 
     const validateErrorsTranslates = {
         [ValidateProfileErrors.NO_DATA]: t('Нет данных'),
@@ -49,7 +51,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const validateErrors = useSelector(getProfileValidateErrors);
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (id) {
+            dispatch(fetchProfileData(id));
+        }
     }, [dispatch]);
 
     const onChangeFirstname = useCallback((value?: string) => {
@@ -85,9 +89,9 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     }, [dispatch]);
 
     return (
-        <UseDynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ProfilePage, {}, [className])}>
-                <ProfileHeader />
+                <ProfileHeader profileId={id} />
                 {validateErrors?.length && validateErrors.map((error) => (
                     <Text
                         key={error}
@@ -111,7 +115,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     readonly={readonly}
                 />
             </div>
-        </UseDynamicModuleLoader>
+        </DynamicModuleLoader>
 
     );
 };

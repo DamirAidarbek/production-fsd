@@ -6,6 +6,10 @@
     translate: none;
     box-shadow: none;
     border: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .Button:disabled {

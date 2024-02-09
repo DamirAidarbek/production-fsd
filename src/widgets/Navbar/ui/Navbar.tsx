@@ -17,7 +17,6 @@ export const Navbar = memo((props: NavbarProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const user = useSelector(getUserAuthData);
-    console.log(user);
     const [isAuthModal, setIsAuthModal] = useState(false);
 
     const closeAuthModal = useCallback(() => {
@@ -35,7 +34,6 @@ export const Navbar = memo((props: NavbarProps) => {
     if (user) {
         return (
             <div className={classNames(cls.Navbar, {}, [className])}>
-                <BugButton />
                 <Button
                     className={cls.links}
                     theme={ButtonTheme.CLEAR_INVERTED}
@@ -49,7 +47,6 @@ export const Navbar = memo((props: NavbarProps) => {
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <BugButton />
             <Button
                 className={cls.links}
                 theme={ButtonTheme.CLEAR_INVERTED}

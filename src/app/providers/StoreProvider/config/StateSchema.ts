@@ -6,9 +6,12 @@ import {
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
+import { ArticleDetailsSchema } from 'entities/Article';
 import { AxiosInstance } from 'axios';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
+import { AddCommentSchema } from 'features/AddComment';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -17,6 +20,9 @@ export interface StateSchema {
     // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
+    articleDetails?: ArticleDetailsSchema;
+    articleDetailsPageComments?: ArticleDetailsPageSchema;
+    addComment?: AddCommentSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
